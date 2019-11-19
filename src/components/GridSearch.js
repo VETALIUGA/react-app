@@ -6,37 +6,24 @@ import { Button } from 'react-bootstrap'
 import Logo from '../media/github-logo-face.svg'
 
 function GridSearch(props) {
-    const buttonContent = (currentRepos) => {
-        if(props.favorites) {
-            const arr = props.favorites.filter((item) => {
-                return item.id == currentRepos.id;
-            })
-    
-            if (arr.length) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    }
     return (
         <div className="grid-search-wrap">
             <form onSubmit={props.submitHandler}>
-                <input type="text" name="name" />
-                <input type="submit" value="Search" />
+                <input type="text" name="name"/>
+                <input type="submit" value="Search"/>
             </form>
+            {/* <form>
+                <input type="text" name="name" onChange={props.inputChangeHandler}/>
+                <input type="submit" value="Search" onClick={props.searchButtonHandler}/>
+            </form> */}
             <div className="grid-search">
                 <div className={"loader " + props.loader}>
                     <img src={Logo}></img>
                 </div>
-                {props.repos.map((item) => {
-                    const checkFavor = buttonContent(item);
+                {props.repos.map((item, index) => {
+                    const checkFavor = props.buttonCheckHandler(item, props.favorites);
                     return (
-                        <div className="grid-item">
+                        <div className="grid-item" key={index}>
                             <Card style={{ width: '18rem' }}>
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>

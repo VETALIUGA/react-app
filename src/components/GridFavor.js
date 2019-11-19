@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 
 function GridFavor(props) {
-  if (props.repos.length != 0) {
+  if (props.repos.length) {
     return (
       <div className="grid-favorites-wrap">
         <Button variant="danger" block onClick={() => props.deleteAllFav()}>Delete All Favorites</Button>
